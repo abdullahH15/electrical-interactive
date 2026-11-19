@@ -2,7 +2,7 @@
 
 دليل تفاعلي بالعربي لتعلّم تصميم الإنارة ببرنامج **DIALux evo** في المباني والملاعب والبنية التحتية.
 
-**الموقع:** https://abdullahh15.github.io/dialux-academy/
+**الموقع:** https://abdullahh15.github.io/electrical-interactive/
 
 ## ما في النسخة المجانية
 - أساسيات الإضاءة مع مختبر تفاعلي
@@ -13,7 +13,7 @@
 
 ## النسخة الاحترافية
 تضيف المسارات الكاملة بخطوات DIALux، والحاسبات، ومدقق النتائج، وقائمة التحقق، ومستكشف 53 أداة، ومعالج بداية المشروع، وحزم التسليم.
-الأسعار والخطط في [`pricing.html`](https://abdullahh15.github.io/dialux-academy/pricing.html).
+الأسعار والخطط في [`pricing.html`](https://abdullahh15.github.io/electrical-interactive/pricing.html).
 
 ## إعدادات البيع
 الأسعار وروابط الشراء ووسائل التواصل كلها في `assets/config.js`.
