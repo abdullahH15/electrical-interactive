@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>احتراف أدوات DIALux evo</title>
+<meta name="description" content="دليل تفاعلي شامل لأدوات DIALux evo ووظائفه، وطريقة بدء أي مشروع، وطرق التسليم الاحترافية">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23111'/%3E%3Ctext x='16' y='21' font-size='13' font-family='Arial' font-weight='700' fill='%23fff' text-anchor='middle'%3EDx%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  /* مكونات خاصة بصفحة الأدوات، مبنية على متغيرات assets/style.css */
+  kbd {
+    font-family: var(--mono); font-size: .8rem; direction: ltr; unicode-bidi: isolate; display: inline-block;
+    background: var(--surface); border: 1px solid var(--border); border-bottom-width: 2px; border-radius: 6px;
+    padding: 0 6px; line-height: 1.6; white-space: nowrap; color: var(--text);
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    font-family: inherit; font-size: .85rem; cursor: pointer; padding: 4px 12px; border-radius: 99px;
+    border: 1px solid var(--border); background: var(--surface); color: var(--text);
+  }
+  .chip[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-strong); font-weight: 600; }
+  .lvl { font-size: .74rem; font-weight: 700; padding: 1px 9px; border-radius: 99px; white-space: nowrap; }
+  .lvl.l1 { background: var(--bad-soft); color: var(--bad); }
+  .lvl.l2 { background: var(--warn-soft); color: var(--warn); }
+  .lvl.l3 { background: var(--blue-soft); color: var(--blue); }
+
+  /* تشريح الواجهة */
+  .anatomy { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 14px; align-items: start; }
+  .app {
+    direction: ltr; background: #26282c; border: 1px solid #000; border-radius: 10px; overflow: hidden;
+    display: grid; grid-template-columns: 26% 1fr 22%; grid-template-rows: 26px 34px 1fr 22px; height: 330px;
+    font-family: "Segoe UI", sans-serif; font-size: 11px; color: #cfd2d6;
+  }
+  .app .z { position: relative; border: 1px solid #1a1b1e; cursor: pointer; padding: 6px 8px; overflow: hidden; transition: background .15s; }
+  .app .z:hover { background: #3a3d43; }
+  .app .z.on { background: #4a3d1f; outline: 2px solid #f2b33d; outline-offset: -2px; z-index: 1; }
+  .app .z b { position: absolute; top: 4px; right: 6px; background: #f2b33d; color: #111; border-radius: 50%; width: 18px; height: 18px; display: grid; place-items: center; font-size: 10px; }
+  .z-menu { grid-column: 1 / 4; background: #2f3135; }
+  .z-modes { grid-column: 1 / 4; background: #3a3c41; display: flex; gap: 12px; align-items: center; }
+  .z-modes span { opacity: .85; }
+  .z-tools { background: #303237; }
+  .z-cad { background: linear-gradient(#1f2125, #1f2125) padding-box; display: grid; place-items: center; }
+  .z-cad .room { width: 70%; height: 62%; border: 2px solid #8a8f98; position: relative; background: #2a2d33; }
+  .z-cad .room i { position: absolute; width: 14px; height: 6px; background: #f2b33d; border-radius: 2px; }
+  .z-tree { background: #303237; }
+  .z-status { grid-column: 1 / 4; background: #2b2d31; display: flex; align-items: center; }
+  .line { height: 6px; border-radius: 3px; background: #4a4d54; margin: 5px 0; }
+  .line.s { width: 60%; } .line.m { width: 80%; }
+
+  /* بطاقات الأدوات */
+  .tool-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .tcard { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .tcard .hd { display: flex; justify-content: space-between; gap: 8px; align-items: flex-start; }
+  .tcard h4 { margin: 0; font-size: 1rem; line-height: 1.5; }
+  .tcard .en-name { direction: ltr; unicode-bidi: isolate; color: var(--muted); font-size: .82rem; display: block; font-weight: 500; }
+  .tcard dl { margin: 0; display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 4px 10px; font-size: .9rem; }
+  .tcard dt { color: var(--muted); font-size: .8rem; padding-top: 3px; }
+  .tcard dd { margin: 0; }
+  .tcard .pro { background: var(--accent-soft); border-radius: 8px; padding: 6px 10px; font-size: .88rem; }
+  .count-line { color: var(--muted); font-size: .9rem; margin: 8px 0; }
+
+  /* الاختصارات */
+  .flash { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 14px; align-items: center; }
+  .flash .q { font-size: 1.1rem; font-weight: 600; }
+  .flash .a { min-height: 34px; font-size: 1.1rem; }
+
+  /* المعالج */
+  .wiz-out { margin-top: 14px; }
+  .wiz-out ol { padding-inline-start: 34px; margin: 6px 0 0; }
+  .wiz-out li { margin: 4px 0; }
+  .plan-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+  /* التسليم */
+  .deliv { display: grid; gap: 10px; margin-top: 12px; }
+  .deliv-item { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; }
+  .deliv-item .fmt { font-family: var(--mono); font-weight: 600; font-size: .85rem; background: var(--surface-2); border-radius: 8px; display: grid; place-items: center; padding: 6px; text-align: center; direction: ltr; }
+  .folder { font-family: var(--mono); font-size: .86rem; direction: ltr; text-align: left; background: var(--surface-2); border-radius: 12px; padding: 14px 16px; white-space: pre; overflow-x: auto; line-height: 1.7; }
+
+  /* خارطة الاحتراف */
+  .levels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+  .level h4 { margin: 0 0 6px; }
+  .level .bar { height: 6px; background: var(--surface-2); border-radius: 99px; overflow: hidden; margin: 6px 0 10px; }
+  .level .bar span { display: block; height: 100%; background: var(--ok); width: 0; transition: width .3s; }
+
+  @media (max-width: 960px) {
+    .anatomy { grid-template-columns: 1fr; }
+    .levels { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 620px) {
+    .tool-grid { grid-template-columns: 1fr; }
+    .app { height: 260px; grid-template-columns: 30% 1fr 0; }
+    .z-tree { display: none; }
+    .deliv-item { grid-template-columns: 1fr; }
+    .deliv-item .fmt { justify-self: start; }
+  }
+</style>
+<script>
+  try { var t = localStorage.getItem("dx-theme"); if (t) document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+</script>
+</head>
+<body>
+
+<header class="topbar">
+  <button class="icon-btn" id="menuBtn" aria-label="القائمة">☰</button>
+  <a class="brand" href="index.html" style="color:inherit;text-decoration:none"><span class="logo">Dx</span><span class="txt">احتراف أدوات DIALux evo</span></a>
+  <div class="progress-wrap"><a class="progress-label" href="pricing.html" style="color:var(--accent-strong);font-weight:600;text-decoration:none">★ النسخة الاحترافية</a></div>
+  <a class="icon-btn" href="index.html" style="display:inline-grid;place-items:center;text-decoration:none">الأكاديمية</a>
+  <button class="icon-btn" id="themeBtn" aria-label="تبديل المظهر">◐</button>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <nav class="nav" id="nav">
+      <h4>اعرف البرنامج</h4>
+      <a href="#intro"><span class="dot">•</span>كيف تستخدم هذا الدليل</a>
+      <a href="#anatomy"><span class="dot">•</span>تشريح الواجهة</a>
+      <a href="#keys"><span class="dot">•</span>التنقل والاختصارات</a>
+      <h4>الأدوات</h4>
+      <a href="#tools"><span class="dot">•</span>مستكشف الأدوات</a>
+      <a href="#essentials"><span class="dot">•</span>الأهم أولاً</a>
+      <h4>المشروع</h4>
+      <a href="#start"><span class="dot">•</span>بداية أي مشروع</a>
+      <a href="#deliver"><span class="dot">•</span>طرق التسليم</a>
+      <h4>الاحتراف</h4>
+      <a href="#roadmap"><span class="dot">•</span>خارطة الاحتراف</a>
+      <a href="#protips"><span class="dot">•</span>عادات المحترفين</a>
+    </nav>
+  </aside>
+
+  <main>
+
+<!-- ========== المقدمة ========== -->
+<section class="lesson" id="intro">
+  <div class="kicker">DIALux evo 14 · الأدوات والوظائف</div>
+  <h1>احتراف أدوات DIALux evo: من أول نقرة إلى ملف التسليم</h1>
+  <p class="lead">هذه الصفحة مرجع عملي لكل أداة مهمة في البرنامج: ماذا تفعل، ومتى تستخدمها، واختصارها، ونصيحة المحترف فيها. وفيها معالج يبني لك خطة بداية لأي مشروع، ومنشئ لحزمة التسليم حسب المستلم.</p>
+  <div class="grid c3" style="margin-top:16px">
+    <div class="card"><span class="lvl l1">أساسي</span><p style="margin:6px 0 0">لا يُنجز مشروع بدونها. تعلّمها أولاً.</p></div>
+    <div class="card"><span class="lvl l2">مهم</span><p style="margin:6px 0 0">تحتاجها في أغلب المشاريع وتوفر وقتاً كبيراً.</p></div>
+    <div class="card"><span class="lvl l3">متقدم</span><p style="margin:6px 0 0">لحالات خاصة: ملاعب، BIM، ضوء نهار، مشاهد معقدة.</p></div>
+  </div>
+  <div class="callout info"><b>عن الأسماء والاختصارات</b>أسماء الأدوات مكتوبة بالإنجليزية كما تظهر في البرنامج. الاختصارات مأخوذة من جدول الاختصارات الرسمي من DIAL (الإصدار 2، مع DIALux evo 11.1). اعرض القائمة الحالية في نسختك بـ <kbd>Ctrl + F1</kbd> أو من الإعدادات ← Keyboard، فقد تتغير بعض الاختصارات بين الإصدارات.</div>
+</section>
+
+<!-- ========== تشريح الواجهة ========== -->
+<section class="lesson" id="anatomy">
+  <h2><span class="num">01</span>تشريح الواجهة</h2>
+  <p class="lead">اضغط على أي منطقة في النافذة لتعرف وظيفتها. الرسم تقريبي، وقد تختلف أماكن اللوحات حسب إعداداتك وحجم شاشتك.</p>
+  <div class="anatomy">
+    <div class="app" id="appMock">
+      <div class="z z-menu" data-z="menu"><b>1</b>File &nbsp; Edit &nbsp; View &nbsp; ?</div>
+      <div class="z z-modes" data-z="modes"><b>2</b><span>Project</span><span>Construction</span><span>Light</span><span>Calculation objects</span><span>Export</span><span>Documentation</span></div>
+      <div class="z z-tools" data-z="tools"><b>3</b><div class="line m"></div><div class="line s"></div><div class="line m"></div><div class="line"></div><div class="line s"></div><div class="line m"></div></div>
+      <div class="z z-cad" data-z="cad"><b>4</b><div class="room"><i style="left:20%;top:25%"></i><i style="left:50%;top:25%"></i><i style="left:20%;top:65%"></i><i style="left:50%;top:65%"></i></div></div>
+      <div class="z z-tree" data-z="tree"><b>5</b><div class="line s"></div><div class="line m"></div><div class="line s"></div><div class="line m"></div></div>
+      <div class="z z-status" data-z="status"><b>6</b>Results · 0 new messages</div>
+    </div>
+    <div class="card" id="anatomyInfo"></div>
+  </div>
+</section>
+
+<!-- ========== الاختصارات ========== -->
+<section class="lesson" id="keys">
+  <h2><span class="num">02</span>التنقل والاختصارات</h2>
+  <p class="lead">المحترف يعمل بلوحة المفاتيح نصف الوقت. ابحث في الجدول، أو تدرّب على البطاقات حتى تحفظ أهمها.</p>
+
+  <h3>العرض والتنقل في منطقة الرسم</h3>
+  <div class="grid c3">
+    <div class="card"><b>المسقط الأفقي</b><br><kbd>Ctrl + Num 5</kbd><br><span style="color:var(--muted);font-size:.9rem">للرسم والمحاذاة الدقيقة.</span></div>
+    <div class="card"><b>العرض ثلاثي الأبعاد</b><br><kbd>Ctrl + Num 0</kbd><br><span style="color:var(--muted);font-size:.9rem">للتأكد من الارتفاعات والاتجاهات.</span></div>
+    <div class="card"><b>احتواء كل المحتوى</b><br><kbd>Ctrl + *</kbd><br><span style="color:var(--muted);font-size:.9rem">عندما تضيع داخل المشهد.</span></div>
+  </div>
+  <div class="callout tip"><b>الفأرة</b>عجلة الفأرة للتكبير والتصغير، والسحب داخل منطقة الرسم لتدوير المشهد وتحريكه. جرّب الأزرار الثلاثة في نسختك لتعرف أيها يدوّر وأيها يحرّك، ثم ثبّت العادة.</div>
+
+  <h3>جدول الاختصارات</h3>
+  <div class="form-grid" style="margin-bottom:10px">
+    <label class="f">ابحث<input type="text" id="keySearch" placeholder="مثال: حساب، 3D، حفظ، Ctrl…"></label>
+    <label class="f">الفئة<select id="keyCat"><option value="">الكل</option></select></label>
+  </div>
+  <div class="table-wrap" style="max-height:420px;overflow-y:auto"><table>
+    <thead><tr><th>الفئة</th><th>الوظيفة</th><th>الاختصار</th></tr></thead>
+    <tbody id="keyBody"></tbody>
+  </table></div>
+
+  <h3>بطاقات الحفظ: أهم 15 اختصاراً</h3>
+  <div class="card">
+    <div class="flash">
+      <div><div class="kicker" id="flashCount"></div><div class="q" id="flashQ"></div><div class="a" id="flashA"></div></div>
+      <div class="btn-row" style="margin:0;flex-direction:column">
+        <button class="btn" id="flashShow">أظهر الاختصار</button>
+        <button class="btn ghost" id="flashNext">التالي</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== مستكشف الأدوات ========== -->
+<section class="lesson" id="tools">
+  <h2><span class="num">03</span>مستكشف الأدوات</h2>
+  <div class="locked"><div class="lock-ic" aria-hidden="true">🔒</div><div class="lock-body"><div class="kicker">النسخة الاحترافية</div><h3>مستكشف 53 أداة</h3><ul><li>كل أدوات Project و Construction و Light و Calculation objects و Export و Documentation و Street Lighting</li><li>لكل أداة: الوظيفة، ومتى تستخدمها، والخيارات، والاختصار، ونصيحة المحترف</li><li>تصفية حسب الوضع والأهمية (أساسي، مهم، متقدم) وبحث بالاسم</li></ul><div class="btn-row"><a class="btn" href="pricing.html">اعرض الأسعار والخطط ←</a></div></div></div>
+  
+</section>
+
+<!-- ========== الأهم أولاً ========== -->
+<section class="lesson" id="essentials">
+  <h2><span class="num">04</span>الأهم أولاً: 80٪ من العمل بـ 12 أداة</h2>
+  <p class="lead">إذا كان وقتك محدوداً، أتقن هذه الأدوات بالترتيب. هي ما تستخدمه في كل مشروع تقريباً.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th class="num">#</th><th>الأداة</th><th>لماذا هي مهمة</th><th>الاختصار</th></tr></thead>
+    <tbody id="essBody"></tbody>
+  </table></div>
+  <div class="callout warn"><b>ثلاثة إعدادات تُفسد المشروع لو نُسيت</b>معامل الصيانة (Project)، ومقياس المخطط المستورد (Import)، وارتفاع وهامش سطح العمل (Calculation objects). راجعها في أول كل مشروع وقبل كل تسليم.</div>
+</section>
+
+<!-- ========== بداية أي مشروع ========== -->
+<section class="lesson" id="start">
+  <h2><span class="num">05</span>بداية أي مشروع</h2>
+  <div class="locked"><div class="lock-ic" aria-hidden="true">🔒</div><div class="lock-body"><div class="kicker">النسخة الاحترافية</div><h3>معالج بداية المشروع</h3><ul><li>تختار نوع المشروع وما لديك من مدخلات، فيبني لك خطة من 12 إلى 18 خطوة بالأدوات والاختصارات</li><li>7 أسئلة قبل فتح البرنامج، وهيكل مجلد المشروع</li></ul><div class="btn-row"><a class="btn" href="pricing.html">اعرض الأسعار والخطط ←</a></div></div></div>
+  
+</section>
+
+<section class="lesson" id="deliver">
+  <h2><span class="num">06</span>طرق التسليم</h2>
+  <div class="locked"><div class="lock-ic" aria-hidden="true">🔒</div><div class="lock-body"><div class="kicker">النسخة الاحترافية</div><h3>حزم التسليم</h3><ul><li>ما ترسله لكل مستلم: الاستشاري، فريق الكهرباء، المقاول، BIM، العميل، الأرشيف</li><li>ترتيب صفحات التقرير الثماني ومن أين تأتي كل صفحة في البرنامج</li><li>مراجعة ما قبل الإرسال</li></ul><div class="btn-row"><a class="btn" href="pricing.html">اعرض الأسعار والخطط ←</a></div></div></div>
+  
+</section>
+
+<section class="lesson" id="roadmap">
+  <h2><span class="num">07</span>خارطة الاحتراف</h2>
+  <div class="locked"><div class="lock-ic" aria-hidden="true">🔒</div><div class="lock-body"><div class="kicker">النسخة الاحترافية</div><h3>خارطة الاحتراف</h3><ul><li>18 مهارة في ثلاثة مستويات، مع حفظ تقدمك</li></ul><div class="btn-row"><a class="btn" href="pricing.html">اعرض الأسعار والخطط ←</a></div></div></div>
+  
+</section>
+
+<section class="lesson" id="protips">
+  <h2><span class="num">08</span>عادات المحترفين</h2>
+  <div class="locked"><div class="lock-ic" aria-hidden="true">🔒</div><div class="lock-body"><div class="kicker">النسخة الاحترافية</div><h3>عادات المحترفين</h3><ul><li>10 عادات توفر الوقت وتقلل الأخطاء في كل مشروع</li></ul><div class="btn-row"><a class="btn" href="pricing.html">اعرض الأسعار والخطط ←</a></div></div></div>
+  
+</section>
+
+  <footer>احتراف أدوات DIALux evo · جزء من <a href="index.html">أكاديمية الإنارة الهندسية</a> · DIALux علامة تجارية لشركة DIAL GmbH، وهذا الدليل مستقل وغير تابع لها</footer>
+  </main>
+</div>
+
+<script src="assets/tools.js"></script>
+</body>
+</html>

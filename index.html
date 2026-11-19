@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>أكاديمية الإنارة الهندسية</title>
+<meta name="description" content="دليل تفاعلي لتعلم DIALux evo في تصميم إنارة المباني والملاعب والبنية التحتية">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23111'/%3E%3Ctext x='16' y='21' font-size='13' font-family='Arial' font-weight='700' fill='%23fff' text-anchor='middle'%3EDx%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  try { var t = localStorage.getItem("dx-theme"); if (t) document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+</script>
+</head>
+<body>
+
+<header class="topbar">
+  <button class="icon-btn" id="menuBtn" aria-label="القائمة">☰</button>
+  <div class="brand"><span class="logo">Dx</span><span class="txt">أكاديمية الإنارة الهندسية</span></div>
+  <div class="progress-wrap">
+    <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+    <span class="progress-label" id="progressLabel">0 من 0 دروس</span>
+  </div>
+  <button class="icon-btn" id="themeBtn" aria-label="تبديل المظهر">◐</button>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <nav class="nav" id="nav">
+      <h4>البداية</h4>
+      <a href="#start"><span class="dot">✓</span>ابدأ هنا</a>
+      <a href="#basics"><span class="dot">✓</span>أساسيات الإضاءة</a>
+      <a href="#interface"><span class="dot">✓</span>واجهة البرنامج</a>
+      <h4>المنهجية</h4>
+      <a href="#workflow"><span class="dot">✓</span>سير العمل الاحترافي</a>
+      <h4>المسارات</h4>
+      <a href="#buildings"><span class="dot">✓</span>المباني</a>
+      <a href="#sports"><span class="dot">✓</span>الملاعب</a>
+      <a href="#infra"><span class="dot">✓</span>البنية التحتية والطرق</a>
+      <h4>الاختبار والتسليم</h4>
+      <a href="#verify"><span class="dot">✓</span>الاختبار والتحقق</a>
+      <a href="#docs"><span class="dot">✓</span>التوثيق والتسليم</a>
+      <a href="#quiz"><span class="dot">✓</span>اختبر نفسك</a>
+      <h4>مرجع</h4>
+      <a href="#glossary"><span class="dot">✓</span>قاموس المصطلحات</a>
+      <h4>صفحات إضافية</h4>
+      <a href="pricing.html"><span class="dot">★</span>النسخة الاحترافية والأسعار</a>
+      <a href="tools.html"><span class="dot">↗</span>احتراف أدوات البرنامج</a>
+      <a href="guide.html"><span class="dot">↗</span>دليل استخدام الموقع</a>
+    </nav>
+  </aside>
+
+  <main id="main">
+
+<!-- ============ ابدأ هنا ============ -->
+<section class="lesson" id="start">
+  <div class="kicker">DIALux evo 14 · دليل عملي بالعربي</div>
+  <h1>تعلّم تصميم الإنارة باحتراف، من الفكرة إلى التقرير المعتمد</h1>
+  <p class="lead">هذا الدليل يمشي معك خطوة بخطوة: تفهم المفاهيم، وتتعرف على البرنامج، وتصمم مبنى وملعباً وطريقاً، ثم تتحقق من النتائج وتسلّم تقريراً يُعتمد.</p>
+
+  <div class="grid c3" style="margin-top:18px">
+    <a class="card track-card" href="#buildings"><div class="ico">🏢</div><h3>المباني</h3><p>مكاتب، مدارس، مواقف داخلية، غرف فنية. معيار EN 12464-1.</p></a>
+    <a class="card track-card" href="#sports"><div class="ico">🏟️</div><h3>الملاعب</h3><p>كرة قدم، تنس، صالات. فئات EN 12193 وتوزيع الأعمدة والتوجيه.</p></a>
+    <a class="card track-card" href="#infra"><div class="ico">🛣️</div><h3>البنية التحتية</h3><p>طرق، تقاطعات، ممرات مشاة، مواقف خارجية. معيار EN 13201.</p></a>
+  </div>
+
+  <h3>كيف تستفيد من الدليل</h3>
+  <div class="grid c4">
+    <div class="card"><b>1. اقرأ</b><br><span style="color:var(--muted)">الأساسيات وسير العمل أولاً.</span></div>
+    <div class="card"><b>2. جرّب</b><br><span style="color:var(--muted)">الحاسبات والرسومات التفاعلية.</span></div>
+    <div class="card"><b>3. طبّق</b><br><span style="color:var(--muted)">نفّذ التمرين في DIALux.</span></div>
+    <div class="card"><b>4. تحقّق</b><br><span style="color:var(--muted)">أدخل نتائجك في المدقق.</span></div>
+  </div>
+  <div class="callout tip"><b>جديد: احتراف أدوات البرنامج</b>مرجع لكل أداة مهمة في DIALux evo مع اختصاراتها، ومعالج يبني خطة بداية لأي مشروع، ومنشئ لحزمة التسليم حسب المستلم. <a href="tools.html">افتح صفحة الأدوات ←</a></div>
+  <p style="margin-top:12px"><a href="guide.html">اقرأ دليل استخدام الموقع: لمن هو، وما مخرجاته، وكيف يفيدك في العمل ←</a></p>
+
+  <div class="callout info"><b>ملاحظة مهمة عن المعايير</b>القيم في هذا الدليل مرجعية للتعلم ومأخوذة من المعايير الأوروبية الشائعة (EN 12464-1، EN 12193، EN 13201). في المشاريع الفعلية التزم بالمعيار المذكور في العقد، وبمتطلبات الجهة المالكة والبلدية وكود البناء المعتمد، وارجع للنسخة الرسمية من المعيار.</div>
+  <button class="btn ghost done-btn" data-done="start">✓ أنهيت هذا الدرس</button>
+</section>
+
+<!-- ============ الأساسيات ============ -->
+<section class="lesson" id="basics">
+  <h2><span class="num">01</span>أساسيات الإضاءة التي تحتاجها فعلاً</h2>
+  <p class="lead">ست كميات فقط تكفيك لفهم أي تقرير DIALux.</p>
+
+  <div class="grid c3">
+    <div class="card"><b>التدفق Φ</b> <span class="en">(lm)</span><br>كل الضوء الخارج من الكشاف. يأتي من كتالوج الشركة.</div>
+    <div class="card"><b>الاستضاءة E</b> <span class="en">(lx)</span><br>الضوء الساقط على السطح. هذا ما تتحقق منه في المكاتب والملاعب.</div>
+    <div class="card"><b>النصوع L</b> <span class="en">(cd/m²)</span><br>ما تراه العين من السطح. أساس طرق السيارات.</div>
+    <div class="card"><b>التجانس Uo</b><br>Emin ÷ Ē. يقيس انتظام الإضاءة وعدم وجود بقع مظلمة.</div>
+    <div class="card"><b>الوهج</b> <span class="en">UGR / GR / TI</span><br>داخلي / ملاعب / طرق. الأقل أفضل.</div>
+    <div class="card"><b>معامل الصيانة MF</b><br>تناقص الضوء مع الزمن. غالباً ~0.8 للـ LED في بيئة نظيفة.</div>
+  </div>
+
+  <h3>مختبر تفاعلي: كيف تتغير الإضاءة مع الارتفاع والمسافة؟</h3>
+  <div class="card">
+    <div class="form-grid">
+      <label class="f">شدة الإضاءة للأسفل I (cd): <b id="labI">5000</b><input type="range" id="labIr" min="500" max="30000" step="500" value="5000"></label>
+      <label class="f">ارتفاع الكشاف h (م): <b id="labH">4</b><input type="range" id="labHr" min="2" max="30" step="0.5" value="4"></label>
+      <label class="f">البعد الأفقي d (م): <b id="labD">0</b><input type="range" id="labDr" min="0" max="30" step="0.5" value="0"></label>
+    </div>
+    <div class="figure" style="margin-top:12px"><svg id="labSvg" viewBox="0 0 600 260" role="img" aria-label="رسم الكشاف والنقطة"></svg></div>
+    <div class="result" id="labRes"></div>
+    <div class="callout tip"><b>الدرس المستفاد</b>الإضاءة تتناقص مع مربع المسافة (قانون التربيع العكسي) ومع زاوية السقوط (cos³θ). لذلك تحتاج الأعمدة العالية كشافات أقوى وبتوزيع أضيق، وتحتاج المسافات الكبيرة بين الكشافات توزيعاً أعرض.</div>
+  </div>
+  <button class="btn ghost done-btn" data-done="basics">✓ أنهيت هذا الدرس</button>
+</section>
+
+<!-- ============ الواجهة ============ -->
+<section class="lesson" id="interface">
+  <h2><span class="num">02</span>واجهة DIALux evo</h2>
+  <p class="lead">البرنامج مقسّم إلى <b>أوضاع (Modes)</b> في الشريط العلوي. كل وضع مرحلة من مراحل العمل. اضغط على أي وضع لتعرف وظيفته:</p>
+  <div class="dx-mock" id="dxMock"></div>
+
+  <h3>شاشة البداية: من أين تبدأ مشروعك؟</h3>
+  <p>اختر نوع مشروعك لتعرف الخيار المناسب في شاشة البداية:</p>
+  <div class="tabs" id="startTabs" role="tablist">
+    <button class="tab" role="tab" data-k="buildings" aria-selected="true">🏢 مبنى</button>
+    <button class="tab" role="tab" data-k="sports" aria-selected="false">🏟️ ملعب</button>
+    <button class="tab" role="tab" data-k="infra" aria-selected="false">🛣️ طريق / بنية تحتية</button>
+  </div>
+  <div id="startChooser" class="grid c2"></div>
+
+  <h3>عادات احترافية من أول يوم</h3>
+  <div class="grid c2">
+    <div class="card"><b>💾 احفظ بنسخ مؤرخة</b><br>مثلاً <code>Project_2026-11-14_v03.evo</code>. ملفات DIALux قد تتلف، والرجوع لنسخة سابقة ينقذك.</div>
+    <div class="card"><b>🧭 العرض والتنقل</b><br>عجلة الماوس للتكبير، والسحب لتدوير المشهد وتحريكه. بدّل بين العرض ثلاثي الأبعاد والمسقط الأفقي للمحاذاة الدقيقة.</div>
+    <div class="card"><b>🔎 Luminaire Finder</b><br>من أعلى اليمين: ابحث عن كشاف بالمواصفات (تدفق، قدرة، IP) من كتالوجات الشركات.</div>
+    <div class="card"><b>🎓 Academy</b><br>في شاشة البداية روابط لدروس الشركة الرسمية وقاعدة المعرفة. ارجع لها لأي أداة تفصيلية.</div>
+  </div>
+  <div class="callout warn"><b>تنبيه</b>أسماء الأزرار قد تتغير قليلاً بين الإصدارات. إذا لم تجد أداة باسمها، ابحث عنها في الوضع المرتبط بها: الإنشاء أو الإضاءة أو عناصر الحساب.</div>
+  <button class="btn ghost done-btn" data-done="interface">✓ أنهيت هذا الدرس</button>
+</section>
+
+<!-- ============ سير العمل ============ -->
+<section class="lesson" id="workflow">
+  <h2><span class="num">03</span>سير العمل الاحترافي: 10 مراحل</h2>
+  <p class="lead">نفس المنهجية لكل مشروع: مبنى، ملعب، أو طريق. اضغط على المرحلة لتفاصيلها والخطأ الشائع فيها.</p>
+  <div class="stepper">
+    <div class="step-list" id="stepList"></div>
+    <div class="card step-panel" id="stepPanel"></div>
+  </div>
+  <button class="btn ghost done-btn" data-done="workflow">✓ أنهيت هذا الدرس</button>
+</section>
+
+<!-- ============ المباني ============ -->
+<section class="lesson" id="buildings">
+  <h2><span class="num">04</span>مسار المباني</h2>
+  <p class="lead">من غرفة واحدة إلى مبنى كامل بعدة طوابق، وفق EN 12464-1.</p>
+
+  <h3>1) جدول المتطلبات (EN 12464-1:2021)</h3>
+  <div class="form-grid" style="margin-bottom:10px">
+    <label class="f">ابحث عن فراغ<input type="text" id="indoorSearch" placeholder="مثال: مكتب، ممر، مواقف…"></label>
+    <label class="f">التصنيف<select id="indoorCat"><option value="">الكل</option></select></label>
+  </div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>التصنيف</th><th>الفراغ</th><th class="num">Em (lx)</th><th class="num">UGR ≤</th><th class="num">Uo ≥</th><th class="num">Ra ≥</th></tr></thead>
+    <tbody id="indoorBody"></tbody>
+  </table></div>
+
+  <div class="locked"><div class="lock-ic" aria-hidden="true">🔒</div><div class="lock-body"><div class="kicker">النسخة الاحترافية</div><h3>بقية مسار المباني</h3><ul><li>حاسبة طريقة اللومن: عدد الكشافات والشبكة المقترحة و W/m²</li><li>خطوات تمرين المكتب في DIALux خطوة بخطوة</li><li>مبنى كامل من مخطط DWG: الاستيراد، الطوابق، الغرف، المتطلبات</li><li>إنارة الطوارئ وفق EN 1838</li></ul><div class="btn-row"><a class="btn" href="pricing.html">اعرض الأسعار والخطط ←</a></div></div></div>
+  <button class="btn ghost done-btn" data-done="buildings">✓ أنهيت هذا الدرس</button>
+</section>
+
+<!-- ============ الملاعب ============ -->
+<section class="lesson" id="sports">
+  <h2><span class="num">05</span>مسار الملاعب</h2>
+  <p class="lead">الملاعب تختلف عن المباني: كشافات كاشفة على أعمدة عالية، وتوجيه دقيق لكل كشاف، ووهج يجب التحكم فيه، وتسرب ضوئي للجيران.</p>
+
+  <h3>1) اختر الرياضة والفئة (EN 12193)</h3>
+  <div class="tabs" id="sportTabs" role="tablist"></div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>الفئة</th><th>الاستخدام</th><th class="num">Eh avg (lx)</th><th class="num">Uo ≥</th><th class="num">Ra ≥</th></tr></thead>
+    <tbody id="sportBody"></tbody>
+  </table></div>
+  <p id="sportNote" style="color:var(--muted);font-size:.92rem"></p>
+  <div class="callout warn"><b>البث التلفزيوني</b>إذا كان الملعب سيُبث تلفزيونياً فالمتطلبات أعلى بكثير وتعتمد على <b>الإضاءة الرأسية نحو الكاميرات</b>، وتُحدد وفق دليل الإنارة للجهة المنظمة (FIFA، الاتحاد الآسيوي، الاتحاد المحلي) بنسخته الحالية. EN 12193 وحده لا يكفي لهذه الحالة.</div>
+
+  <div class="locked"><div class="lock-ic" aria-hidden="true">🔒</div><div class="lock-body"><div class="kicker">النسخة الاحترافية</div><h3>بقية مسار الملاعب</h3><ul><li>مخطط الأعمدة التفاعلي: 4 أو 6 أو 8 أعمدة، والارتفاع بقاعدة 25°، ومنطقة وهج خط المرمى</li><li>تمرين ملعب كرة قدم الفئة II في DIALux: الأعمدة والتوجيه ومراقبو GR</li><li>فحص التسرب الضوئي على المباني المجاورة</li><li>ملاعب التنس والبادل والصالات المغلقة</li></ul><div class="btn-row"><a class="btn" href="pricing.html">اعرض الأسعار والخطط ←</a></div></div></div>
+  <button class="btn ghost done-btn" data-done="sports">✓ أنهيت هذا الدرس</button>
+</section>
+
+<!-- ============ البنية التحتية ============ -->
+<section class="lesson" id="infra">
+  <h2><span class="num">06</span>مسار البنية التحتية والطرق</h2>
+  <p class="lead">طرق السيارات، والتقاطعات، وممرات المشاة، والمواقف المكشوفة وفق EN 13201 و EN 12464-2.</p>
+
+  <h3>1) فئات الإنارة</h3>
+  <div class="tabs" id="roadTabs" role="tablist">
+    <button class="tab" data-k="M" aria-selected="true">M: طرق السيارات</button>
+    <button class="tab" data-k="C" aria-selected="false">C: تقاطعات ومناطق تعارض</button>
+    <button class="tab" data-k="P" aria-selected="false">P: مشاة ودراجات</button>
+    <button class="tab" data-k="PK" aria-selected="false">مواقف خارجية</button>
+  </div>
+  <div class="table-wrap"><table id="roadTable"></table></div>
+  <p id="roadNote" style="color:var(--muted);font-size:.92rem"></p>
+
+  <div class="locked"><div class="lock-ic" aria-hidden="true">🔒</div><div class="lock-body"><div class="kicker">النسخة الاحترافية</div><h3>بقية مسار البنية التحتية</h3><ul><li>مصمم مقطع الطريق: الترتيب المقترح وتقييم S/H وعدد الأعمدة لكل كم</li><li>تمرين طريق M3 مع أرصفة P3 في وحدة Street Lighting والتحسين</li><li>التقاطعات والمواقف المكشوفة والحدائق والأنفاق</li></ul><div class="btn-row"><a class="btn" href="pricing.html">اعرض الأسعار والخطط ←</a></div></div></div>
+  <button class="btn ghost done-btn" data-done="infra">✓ أنهيت هذا الدرس</button>
+</section>
+
+<!-- ============ الاختبار والتحقق ============ -->
+<section class="lesson" id="verify">
+  <h2><span class="num">07</span>الاختبار والتحقق من التصميم</h2>
+  <p class="lead">نتيجة "خضراء" في DIALux لا تكفي. تحقق من المدخلات، ثم من النتائج، ثم من منطقية التصميم.</p>
+
+  <div class="locked"><div class="lock-ic" aria-hidden="true">🔒</div><div class="lock-body"><div class="kicker">النسخة الاحترافية</div><h3>الاختبار والتحقق كاملاً</h3><ul><li>مدقق النتائج: 9 قوالب متطلبات (مكاتب، فصول، ممرات، مواقف، ملاعب، طرق، ممرات مشاة)</li><li>تشخيص 9 مشاكل شائعة: السبب والحل</li><li>قائمة تحقق قبل التسليم من 18 بنداً تُحفظ تلقائياً</li></ul><div class="btn-row"><a class="btn" href="pricing.html">اعرض الأسعار والخطط ←</a></div></div></div>
+  <button class="btn ghost done-btn" data-done="verify">✓ أنهيت هذا الدرس</button>
+</section>
+
+<!-- ============ التوثيق ============ -->
+<section class="lesson" id="docs">
+  <h2><span class="num">08</span>التوثيق والتسليم</h2>
+  <p class="lead">التقرير هو ما يراه الاستشاري والمالك. اجعله واضحاً ومختصراً وقابلاً للتحقق.</p>
+  <div class="locked"><div class="lock-ic" aria-hidden="true">🔒</div><div class="lock-body"><div class="kicker">النسخة الاحترافية</div><h3>التوثيق والتسليم</h3><ul><li>محتوى التقرير الاحترافي بالترتيب</li><li>التصدير: PDF و DWG و IFC وجسر Revit</li><li>ربط رموز الكشافات بالمخطط الكهربائي</li></ul><div class="btn-row"><a class="btn" href="pricing.html">اعرض الأسعار والخطط ←</a></div></div></div>
+  <button class="btn ghost done-btn" data-done="docs">✓ أنهيت هذا الدرس</button>
+</section>
+
+<!-- ============ الاختبار ============ -->
+<section class="lesson" id="quiz">
+  <h2><span class="num">09</span>اختبر نفسك</h2>
+  <p class="lead"><span id="quizScore" class="score">0 / 0</span> · اختر إجابة لترى الشرح. في النسخة المجانية 6 أسئلة، والاختبار الكامل (14 سؤالاً) في <a href="pricing.html">النسخة الاحترافية</a>.</p>
+  <div id="quizBox"></div>
+  <div class="btn-row"><button class="btn ghost" id="quizReset">إعادة الاختبار</button></div>
+  <button class="btn ghost done-btn" data-done="quiz">✓ أنهيت هذا الدرس</button>
+</section>
+
+<!-- ============ القاموس ============ -->
+<section class="lesson" id="glossary">
+  <h2><span class="num">10</span>قاموس المصطلحات</h2>
+  <label class="f" style="max-width:420px">ابحث<input type="text" id="glSearch" placeholder="عربي أو إنجليزي…"></label>
+  <div id="glBox" style="margin-top:8px"></div>
+  <button class="btn ghost done-btn" data-done="glossary">✓ أنهيت هذا الدرس</button>
+</section>
+
+  <footer><a href="guide.html">دليل استخدام الموقع والمخرجات والقيمة في العمل ←</a><br>أكاديمية الإنارة الهندسية · DIALux علامة تجارية لشركة DIAL GmbH، وهذا الدليل مستقل وغير تابع لها · القيم مرجعية، فراجع المعيار المعتمد في مشروعك.</footer>
+  </main>
+</div>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

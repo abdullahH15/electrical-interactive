@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="شرح تفاعلي لاستخدام موقع أكاديمية الإنارة الهندسية: الأدوات والمخرجات والقيمة في العمل">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>دليل أكاديمية الإنارة الهندسية</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Readex+Pro:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* التخطيط: عمود قراءة واحد بعرض مريح، مقاطع متتالية تتحول إلى شرائح في وضع العرض.
+   اللمسة الخاصة بالموضوع: مقياس الألوان الكاذبة (False colours) من تقارير DIALux يُستخدم كمؤشر للمقاطع. */
+:root {
+  --bg: #f3f5f8;
+  --surface: #ffffff;
+  --surface-2: #e9edf2;
+  --ink: #131922;
+  --muted: #586271;
+  --line: #d9dfe7;
+  --amber: #a86400;
+  --amber-soft: #fdf0d8;
+  --blue: #22539f;
+  --blue-soft: #e4ecf8;
+  --ok: #1b7543;
+  --ok-soft: #e0f2e7;
+  --bad: #ac2a21;
+  --bad-soft: #f9e4e2;
+  --fc1: #2b3a99; --fc2: #2479c9; --fc3: #2fae8f; --fc4: #9ccc3c; --fc5: #f2c230; --fc6: #e8692c;
+  --font-display: "Readex Pro", "IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+  --font-body: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+  --font-data: "IBM Plex Mono", Consolas, monospace;
+  --radius: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1217; --surface: #161b22; --surface-2: #1f2630; --ink: #e7ebf0; --muted: #9ba5b3;
+    --line: #2a323d; --amber: #f0ad45; --amber-soft: #33270f; --blue: #84b2ef; --blue-soft: #172538;
+    --ok: #63cf92; --ok-soft: #12301f; --bad: #ff8b80; --bad-soft: #3a1714;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1217; --surface: #161b22; --surface-2: #1f2630; --ink: #e7ebf0; --muted: #9ba5b3;
+  --line: #2a323d; --amber: #f0ad45; --amber-soft: #33270f; --blue: #84b2ef; --blue-soft: #172538;
+  --ok: #63cf92; --ok-soft: #12301f; --bad: #ff8b80; --bad-soft: #3a1714;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16.5px; line-height: 1.85; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface); }
+a { color: var(--blue); }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; line-height: 1.4; margin: 0; }
+h1 { font-size: clamp(1.8rem, 4.6vw, 2.7rem); font-weight: 700; }
+h2 { font-size: clamp(1.35rem, 3vw, 1.75rem); font-weight: 600; }
+h3 { font-size: 1.08rem; font-weight: 600; }
+p { margin: 0; }
+.data, .en { font-family: var(--font-data); direction: ltr; unicode-bidi: isolate; font-variant-numeric: tabular-nums; }
+.en { font-family: inherit; }
+button { font-family: inherit; }
+:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
+.wrap { max-width: 980px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+/* الترويسة */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--surface) 94%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; gap: 12px; padding-block: 10px; }
+.mark { width: 34px; height: 34px; border-radius: 9px; background: var(--ink); color: var(--bg); display: grid; place-items: center; font-weight: 700; font-size: .85rem; direction: ltr; flex: 0 0 auto; }
+.top .name { font-family: var(--font-display); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.top .spacer { flex: 1; }
+.fc-index { display: flex; gap: 3px; }
+.fc-index a { width: 22px; height: 8px; border-radius: 2px; display: block; opacity: .35; transition: opacity .2s; }
+.fc-index a.on { opacity: 1; }
+.btn { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 10px; padding: 7px 14px; cursor: pointer; font-size: .92rem; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.btn:hover { border-color: var(--amber); }
+.btn.primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.btn.primary:hover { opacity: .9; }
+
+/* المقاطع */
+section.slide { padding-block: 56px; border-bottom: 1px solid var(--line); }
+section.slide:last-of-type { border-bottom: 0; }
+.eyebrow { font-size: .8rem; font-weight: 600; letter-spacing: .04em; color: var(--amber); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.eyebrow i { width: 26px; height: 6px; border-radius: 2px; display: inline-block; }
+.lead { color: var(--muted); font-size: 1.06rem; max-width: 62ch; margin-top: 10px; }
+.stack { display: flex; flex-direction: column; gap: 22px; }
+
+/* البداية */
+.hero { padding-top: 48px; }
+.hero .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.legend { margin-top: 30px; max-width: 640px; }
+.legend .bar { display: grid; grid-template-columns: repeat(6, 1fr); height: 14px; border-radius: 4px; overflow: hidden; }
+.legend .ticks { display: grid; grid-template-columns: repeat(6, 1fr); font-size: .78rem; color: var(--muted); margin-top: 4px; }
+.legend .ticks span { text-align: center; }
+.legend .cap { font-size: .8rem; color: var(--muted); margin-top: 2px; }
+.facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-top: 30px; }
+.facts div { background: var(--surface); padding: 14px 16px; }
+.facts b { display: block; font-family: var(--font-data); font-size: 1.6rem; font-weight: 600; line-height: 1.3; }
+.facts span { color: var(--muted); font-size: .9rem; }
+
+/* الأدوار */
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+.tab { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 99px; padding: 6px 16px; cursor: pointer; font-size: .93rem; }
+.tab[aria-selected="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px; }
+.role-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 22px; }
+.role-grid > div { min-width: 0; }
+.path { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.path span { background: var(--surface-2); border-radius: 8px; padding: 2px 10px; font-size: .88rem; }
+.path span + span::before { content: "← "; color: var(--muted); }
+.k { font-size: .8rem; color: var(--muted); font-weight: 600; letter-spacing: .03em; }
+
+/* خريطة الدروس */
+.map { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 16px; }
+.lessons { display: flex; flex-direction: column; gap: 2px; }
+.lessons .grp { font-size: .76rem; color: var(--muted); margin: 10px 8px 2px; font-weight: 600; }
+.lessons .grp:first-child { margin-top: 0; }
+.lessons button { text-align: right; border: 1px solid transparent; background: transparent; color: var(--ink); padding: 6px 10px; border-radius: 9px; cursor: pointer; display: flex; gap: 10px; align-items: center; font-size: .93rem; }
+.lessons button:hover { background: var(--surface-2); }
+.lessons button[aria-selected="true"] { background: var(--surface); border-color: var(--amber); font-weight: 600; }
+.lessons .n { font-family: var(--font-data); font-size: .78rem; color: var(--muted); width: 20px; }
+.io { display: grid; gap: 14px; }
+.io-row { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 12px; align-items: start; }
+.io-row .tag { font-size: .8rem; font-weight: 600; padding: 3px 10px; border-radius: 8px; text-align: center; }
+.tag.do { background: var(--blue-soft); color: var(--blue); }
+.tag.out { background: var(--amber-soft); color: var(--amber); }
+.tag.work { background: var(--ok-soft); color: var(--ok); }
+
+/* الأدوات */
+.tools { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.tool { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.tool .where { font-size: .82rem; color: var(--muted); }
+.ex { background: var(--surface-2); border-radius: 10px; padding: 10px 12px; font-size: .9rem; display: grid; gap: 6px; }
+.ex .row { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.ex .row b { font-family: var(--font-data); font-weight: 600; direction: ltr; }
+.ex .head { font-size: .78rem; color: var(--muted); font-weight: 600; }
+.pill { display: inline-block; padding: 0 10px; border-radius: 99px; font-size: .8rem; font-weight: 600; }
+.pill.ok { background: var(--ok-soft); color: var(--ok); }
+.pill.warn { background: var(--amber-soft); color: var(--amber); }
+
+/* السيناريو */
+.scenario { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; }
+.scenario button { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 10px; padding: 10px 8px; cursor: pointer; font-size: .86rem; line-height: 1.5; display: flex; flex-direction: column; gap: 6px; align-items: flex-start; text-align: right; }
+.scenario button i { height: 5px; width: 100%; border-radius: 2px; display: block; }
+.scenario button[aria-selected="true"] { border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink); }
+.scene-body { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 14px; }
+.scene-body > div { min-width: 0; }
+.scene-body ul { margin: 6px 0 0; padding-inline-start: 18px; }
+.scene-nav { display: flex; justify-content: space-between; margin-top: 16px; gap: 10px; }
+
+/* المخرجات */
+.outputs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.out-card { border-top: 3px solid var(--amber); background: var(--surface); border-radius: 0 0 var(--radius) var(--radius); padding: 14px 16px; min-width: 0; }
+.out-card p { color: var(--muted); font-size: .93rem; margin-top: 4px; }
+
+/* المقارنة */
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: .94rem; }
+th, td { padding: 11px 14px; text-align: right; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { background: var(--surface-2); font-weight: 600; white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+td.before { color: var(--muted); }
+td.after { font-weight: 500; }
+
+.limits { display: grid; gap: 10px; }
+.limit { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+.limit .ic { width: 28px; height: 28px; border-radius: 50%; background: var(--bad-soft); color: var(--bad); display: grid; place-items: center; font-weight: 700; font-size: .9rem; }
+
+.plan { display: grid; gap: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--surface); }
+.plan-row { display: grid; grid-template-columns: 90px minmax(0, 1fr) 140px; gap: 14px; padding: 13px 16px; border-bottom: 1px solid var(--line); align-items: center; }
+.plan-row:last-child { border-bottom: 0; }
+.plan-row .s { font-family: var(--font-data); font-weight: 600; color: var(--amber); }
+.plan-row .t { color: var(--muted); font-size: .88rem; text-align: left; }
+
+details { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+details + details { margin-top: 8px; }
+summary { cursor: pointer; padding: 12px 16px; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 10px; }
+summary::after { content: "+"; font-family: var(--font-data); color: var(--amber); }
+details[open] summary::after { content: "−"; }
+details .a { padding: 0 16px 14px; color: var(--muted); }
+
+.share { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.link-box { display: flex; gap: 8px; align-items: center; background: var(--surface-2); border-radius: 10px; padding: 8px 10px; margin-top: 8px; }
+.link-box code { font-family: var(--font-data); font-size: .82rem; direction: ltr; flex: 1; min-width: 0; overflow-wrap: anywhere; user-select: all; }
+footer { color: var(--muted); font-size: .85rem; text-align: center; padding-block: 30px 50px; }
+
+/* وضع العرض */
+.present-bar { display: none; }
+body.present .top .fc-index, body.present footer { display: none; }
+body.present section.slide { display: none; min-height: calc(100vh - 140px); padding-block: 36px 90px; border: 0; }
+body.present section.slide.current { display: block; }
+body.present .present-bar {
+  display: flex; position: fixed; bottom: 0; left: 0; right: 0; z-index: 25; justify-content: center; gap: 10px; align-items: center;
+  padding: 10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+  background: var(--surface); border-top: 1px solid var(--line);
+}
+.present-bar .count { font-family: var(--font-data); min-width: 64px; text-align: center; color: var(--muted); }
+.present-bar .prog { position: absolute; top: -3px; right: 0; height: 3px; background: var(--amber); transition: width .3s; }
+
+@media (max-width: 820px) {
+  .map, .role-grid { grid-template-columns: 1fr; }
+  .lessons { flex-direction: row; flex-wrap: wrap; }
+  .lessons .grp { display: none; }
+  .tools, .share { grid-template-columns: 1fr; }
+  .outputs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .scenario { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .scene-body { grid-template-columns: 1fr; }
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fc-index { display: none; }
+}
+@media (max-width: 520px) {
+  .outputs { grid-template-columns: 1fr; }
+  .scenario { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .io-row { grid-template-columns: 1fr; gap: 4px; }
+  .io-row .tag { justify-self: start; }
+  .plan-row { grid-template-columns: 64px minmax(0, 1fr); }
+  .plan-row .t { grid-column: 2; text-align: right; }
+  .top .name { display: none; }
+  section.slide { padding-block: 40px; }
+}
+</style>
+</head>
+<body>
+<div dir="rtl" lang="ar">
+<header class="top">
+  <div class="wrap">
+    <span class="mark">Dx</span>
+    <span class="name">دليل أكاديمية الإنارة الهندسية</span>
+    <span class="spacer"></span>
+    <nav class="fc-index" id="fcIndex" aria-label="المقاطع"></nav>
+    <button class="btn" id="presentBtn" type="button">▶ وضع العرض</button>
+  </div>
+</header>
+
+<main class="wrap" id="slides">
+
+<!-- 1 -->
+<section class="slide hero" data-label="المقدمة">
+  <div class="eyebrow"><i style="background:var(--fc1)"></i>دليل الاستخدام</div>
+  <h1>أكاديمية الإنارة الهندسية:<br>من فتح البرنامج إلى تقرير إنارة يُعتمد</h1>
+  <p class="lead">موقع تعليمي تفاعلي بالعربي يجمع في مكان واحد المفاهيم والمعايير والأدوات التي يحتاجها مهندس الإنارة في المباني والملاعب والطرق. هذا الدليل يشرح كيف تستخدمه، وما الذي تخرج به منه، وأين يفيدك في العمل اليومي.</p>
+  <div class="cta">
+    <a class="btn primary" href="https://abdullahh15.github.io/dialux-academy/" target="_blank" rel="noopener">فتح الموقع ↗</a>
+    <a class="btn" href="pricing.html">النسخة الاحترافية والأسعار</a>
+  </div>
+  <div class="legend" aria-hidden="true">
+    <div class="bar"><i style="background:var(--fc1)"></i><i style="background:var(--fc2)"></i><i style="background:var(--fc3)"></i><i style="background:var(--fc4)"></i><i style="background:var(--fc5)"></i><i style="background:var(--fc6)"></i></div>
+    <div class="ticks data"><span>75</span><span>100</span><span>200</span><span>300</span><span>500</span><span>750</span></div>
+    <div class="cap">مقياس الألوان الكاذبة بالـ lx، كما في تقارير DIALux: من موقف داخلي (75) إلى غرفة رسم فني (750).</div>
+  </div>
+  <div class="facts">
+    <div><b>11</b><span>درساً مترابطاً</span></div>
+    <div><b>3</b><span>مسارات: مباني، ملاعب، طرق</span></div>
+    <div><b>6</b><span>أدوات وحاسبات تفاعلية</span></div>
+    <div><b>14</b><span>سؤالاً لقياس الفهم</span></div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="slide" data-label="لمن الموقع">
+  <div class="stack">
+    <div>
+      <div class="eyebrow"><i style="background:var(--fc2)"></i>لمن هذا الموقع</div>
+      <h2>كل دور يستخدمه بطريقة مختلفة</h2>
+      <p class="lead">اختر دورك لترى المسار المقترح داخل الموقع وما تخرج به.</p>
+    </div>
+    <div class="tabs" id="roleTabs" role="tablist"></div>
+    <div class="panel" id="rolePanel" role="tabpanel"></div>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="slide" data-label="خريطة الموقع">
+  <div class="stack">
+    <div>
+      <div class="eyebrow"><i style="background:var(--fc3)"></i>خريطة الموقع</div>
+      <h2>11 درساً: ماذا تفعل في كل درس، وماذا تخرج به</h2>
+      <p class="lead">اضغط على أي درس. لكل درس ثلاثة أسطر: ما تفعله داخل الموقع، والمخرج الذي تحصل عليه، وأين تستخدمه في العمل.</p>
+    </div>
+    <div class="map">
+      <div class="lessons" id="lessonList" role="tablist"></div>
+      <div class="panel io" id="lessonPanel" role="tabpanel"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 -->
+<section class="slide" data-label="الأدوات">
+  <div class="stack">
+    <div>
+      <div class="eyebrow"><i style="background:var(--fc4)"></i>الأدوات التفاعلية</div>
+      <h2>ست أدوات تعطيك أرقاماً، وليس شرحاً فقط</h2>
+      <p class="lead">كل أداة أدناه بمثال فعلي: المدخلات التي أدخلناها والنتيجة التي أعطاها الموقع. مختبر الإضاءة مجاني، وبقية الأدوات في <a href="pricing.html">النسخة الاحترافية</a>.</p>
+    </div>
+    <div class="tools">
+      <div class="tool">
+        <h3>حاسبة طريقة اللومن</h3><div class="where">درس المباني</div>
+        <p>تقدّر عدد الكشافات والشبكة وكثافة القدرة لأي غرفة قبل فتح DIALux.</p>
+        <div class="ex"><div class="head">مثال: مكتب 10×8×3 م، 500 lx، كشاف 3600 lm / 30 W، MF 0.8</div>
+          <div class="row"><span>دليل الغرفة K / معامل الاستفادة UF</span><b>2.02 / 0.66</b></div>
+          <div class="row"><span>العدد الأدنى ← الشبكة المقترحة</span><b>21 → 6 × 4</b></div>
+          <div class="row"><span>الإضاءة المتوقعة / كثافة القدرة</span><b>572 lx / 9.0 W/m²</b></div></div>
+      </div>
+      <div class="tool">
+        <h3>مخطط أعمدة ملعب كرة القدم</h3><div class="where">درس الملاعب</div>
+        <p>يرسم الملعب 105×68 م بترتيب 4 أو 6 أو 8 أعمدة، ويحسب الارتفاع الأدنى بقاعدة 25°، وينبّه إذا وقع عمود في منطقة وهج خط المرمى.</p>
+        <div class="ex"><div class="head">مثال: 6 أعمدة جانبية، بعد 8 م عن خط التماس</div>
+          <div class="row"><span>الارتفاع الأدنى المطلوب</span><b>20.0 m</b></div>
+          <div class="row"><span>4 أعمدة في الزوايا بنفس الإعدادات</span><b>35.0 m</b></div>
+          <div class="row"><span>منطقة خط المرمى</span><span class="pill ok">لا يوجد تعارض</span></div></div>
+      </div>
+      <div class="tool">
+        <h3>مصمم مقطع الطريق</h3><div class="where">درس البنية التحتية</div>
+        <p>من عرض الطريق وارتفاع العمود والمسافة يقترح الترتيب ويقيّم نسبة S/H ويقدّر عدد الأعمدة لكل كيلومتر.</p>
+        <div class="ex"><div class="head">مثال: طريق 7 م، عمود 10 م، مسافة 35 م</div>
+          <div class="row"><span>W/H ← الترتيب المقترح</span><b>0.70 → جانب واحد</b></div>
+          <div class="row"><span>S/H</span><span><b class="data">3.50</b> <span class="pill ok">نطاق جيد</span></span></div>
+          <div class="row"><span>أعمدة لكل كم</span><b>29</b></div></div>
+      </div>
+      <div class="tool">
+        <h3>مدقق النتائج</h3><div class="where">درس الاختبار والتحقق</div>
+        <p>تنقل أرقام DIALux إليه فيحكم على كل متطلب ويكشف الإضاءة الزائدة. فيه 9 قوالب: مكتب، فصل، ممر، موقف، ملعبان، طريقان، ممشى.</p>
+        <div class="ex"><div class="head">مثال: مكتب، Em 720، Uo 0.65، UGR 18.5، Ra 82</div>
+          <div class="row"><span>المتطلبات الأربعة</span><span class="pill ok">ناجح 4/4</span></div>
+          <div class="row"><span>Em أعلى من المطلوب بـ 44٪</span><span class="pill warn">فرصة لتقليل الطاقة</span></div></div>
+      </div>
+      <div class="tool">
+        <h3>مختبر الإضاءة</h3><div class="where">درس الأساسيات</div>
+        <p>تحرّك شدة الكشاف وارتفاعه والبعد الأفقي فترى قانون التربيع العكسي وأثر زاوية السقوط مباشرة.</p>
+        <div class="ex"><div class="head">مثال: 5000 cd على ارتفاع 4 م</div>
+          <div class="row"><span>أسفل الكشاف مباشرة</span><b>312.5 lx</b></div>
+          <div class="row"><span>نفس الكشاف على ارتفاع 8 م</span><b>78.1 lx</b></div></div>
+      </div>
+      <div class="tool">
+        <h3>قائمة التحقق قبل التسليم</h3><div class="where">درس الاختبار والتحقق</div>
+        <p>18 بنداً في 5 مجموعات: النموذج، البيانات، الحساب، النتائج، التسليم. تُحفظ تلقائياً في المتصفح.</p>
+        <div class="ex"><div class="head">أمثلة على البنود</div>
+          <div class="row"><span>معامل الصيانة محدد ومبرَّر</span><span class="data">☐</span></div>
+          <div class="row"><span>مخطط الكشافات DWG مصدّر للفريق الكهربائي</span><span class="data">☐</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="slide" data-label="سيناريو عمل">
+  <div class="stack">
+    <div>
+      <div class="eyebrow"><i style="background:var(--fc5)"></i>سيناريو من واقع العمل</div>
+      <h2>مجمع مدرسي: فصول، وملعب تدريب، ومواقف، وطريق داخلي</h2>
+      <p class="lead">كيف تستخدم الموقع في كل مرحلة من عمر المشروع، من التسعير حتى الرد على ملاحظات الاستشاري.</p>
+    </div>
+    <div class="scenario" id="sceneTabs" role="tablist"></div>
+    <div class="panel">
+      <h3 id="sceneTitle"></h3>
+      <div class="scene-body" id="sceneBody"></div>
+      <div class="scene-nav">
+        <button class="btn" id="scenePrev" type="button">→ السابق</button>
+        <button class="btn primary" id="sceneNext" type="button">التالي ←</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 -->
+<section class="slide" data-label="المخرجات">
+  <div class="stack">
+    <div>
+      <div class="eyebrow"><i style="background:var(--fc6)"></i>المخرجات والنتائج</div>
+      <h2>ما الذي تخرج به بعد إكمال الموقع</h2>
+    </div>
+    <div class="outputs">
+      <div class="out-card"><h3>جدول متطلبات المشروع</h3><p>قيم Em و UGR و Uo و Ra لكل فراغ، وفئة كل ملعب وطريق، جاهزة لتُعتمد من الاستشاري قبل التصميم.</p></div>
+      <div class="out-card"><h3>كميات أولية</h3><p>عدد الكشافات التقريبي و W/m² للفراغات، وعدد أعمدة الملعب وارتفاعها، وأعمدة الطريق لكل كم. تكفي للعرض الفني وجدول الكميات المبدئي.</p></div>
+      <div class="out-card"><h3>منهجية ثابتة</h3><p>عشر مراحل تطبقها في كل مشروع، مع الخطأ الشائع في كل مرحلة وكيف تتجنبه.</p></div>
+      <div class="out-card"><h3>حكم موثّق على التصميم</h3><p>جدول ناجح أو غير محقق لكل متطلب، مع تنبيه عند الإضاءة الزائدة.</p></div>
+      <div class="out-card"><h3>تصميم جاهز للتسليم</h3><p>قائمة تحقق مكتملة من 18 بنداً، وهيكل تقرير DIALux، وملفات DWG للفريق الكهربائي.</p></div>
+      <div class="out-card"><h3>مستوى فهم قابل للقياس</h3><p>درجة في اختبار من 14 سؤالاً مع شرح كل إجابة. مناسبة لتقييم المهندسين الجدد.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section class="slide" data-label="القيمة في العمل">
+  <div class="stack">
+    <div>
+      <div class="eyebrow"><i style="background:var(--fc1)"></i>القيمة في واقع العمل</div>
+      <h2>ما الذي يتغير في يومك</h2>
+    </div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>المهمة</th><th>عادةً</th><th>مع الموقع</th></tr></thead>
+      <tbody>
+        <tr><td>تحديد متطلبات كل فراغ</td><td class="before">البحث في المعيار جدولاً جدولاً</td><td class="after">جدول جاهز قابل للبحث بالاسم والتصنيف</td></tr>
+        <tr><td>التقدير قبل التصميم</td><td class="before">تخمين، أو انتظار التصميم الكامل</td><td class="after">حاسبات تعطي العدد والارتفاعات في دقائق</td></tr>
+        <tr><td>التأكد من نتيجة DIALux</td><td class="before">قبول أي نتيجة خضراء</td><td class="after">مقارنتها بالتقدير اليدوي ومراجعة المدخلات</td></tr>
+        <tr><td>اكتشاف الأخطاء</td><td class="before">بعد ملاحظات الاستشاري</td><td class="after">قبل الإرسال، بالمدقق وقائمة التحقق</td></tr>
+        <tr><td>معالجة ملاحظة مثل "Uo ضعيف"</td><td class="before">تجربة عشوائية</td><td class="after">السبب والحل مباشرة من قسم تشخيص المشاكل</td></tr>
+        <tr><td>تدريب مهندس جديد</td><td class="before">شرح شفهي يتكرر مع كل موظف</td><td class="after">مسار ذاتي بتمارين واختبار</td></tr>
+        <tr><td>توحيد التقارير في الفريق</td><td class="before">كل مهندس بأسلوبه</td><td class="after">هيكل تقرير ومصطلحات موحدة</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<!-- 8 -->
+<section class="slide" data-label="حدود الاستخدام">
+  <div class="stack">
+    <div>
+      <div class="eyebrow"><i style="background:var(--fc2)"></i>حدود الاستخدام</div>
+      <h2>ما لا يفعله الموقع</h2>
+      <p class="lead">اعرف هذه الحدود قبل أن تعتمد على أي رقم في مشروع فعلي.</p>
+    </div>
+    <div class="limits">
+      <div class="limit"><span class="ic">!</span><div><b>لا يغني عن DIALux.</b> الحاسبات تقديرية؛ معامل الاستفادة مثلاً يُقرأ من جدول تقريبي بانعكاسات 70/50/20. الأرقام النهائية تأتي من حساب DIALux بالملف الضوئي الحقيقي.</div></div>
+      <div class="limit"><span class="ic">!</span><div><b>القيم مرجعية.</b> مأخوذة من المعايير الأوروبية EN 12464-1 و EN 12193 و EN 13201. المرجع الملزم هو المعيار المذكور في العقد، واشتراطات الجهة المالكة والبلدية وكود البناء المعتمد.</div></div>
+      <div class="limit"><span class="ic">!</span><div><b>ملاعب البث التلفزيوني خارج النطاق.</b> متطلباتها تعتمد على الإضاءة الرأسية نحو الكاميرات حسب دليل الجهة المنظمة، ولم تُدرج أرقامها.</div></div>
+      <div class="limit"><span class="ic">!</span><div><b>التقدم محفوظ على جهازك فقط.</b> الدروس المنجزة وقائمة التحقق والاختبار تُحفظ في المتصفح، ولا تنتقل لجهاز آخر ولا يراها غيرك.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 -->
+<section class="slide" data-label="خطة تدريب">
+  <div class="stack">
+    <div>
+      <div class="eyebrow"><i style="background:var(--fc3)"></i>للفرق والإدارات</div>
+      <h2>خطة تدريب مقترحة في خمس جلسات</h2>
+      <p class="lead">لاستخدام الموقع في تأهيل فريق. كل جلسة شرح قصير ثم تطبيق في DIALux.</p>
+    </div>
+    <div class="plan">
+      <div class="plan-row"><span class="s">جلسة 1</span><div><b>الأساسيات والواجهة.</b> الدروس 1–3، ومختبر الإضاءة، وجولة في أوضاع البرنامج.</div><span class="t">60–90 دقيقة</span></div>
+      <div class="plan-row"><span class="s">جلسة 2</span><div><b>سير العمل والمباني.</b> الدرسان 4–5، وتمرين المكتب 10×8 م، ثم المدقق.</div><span class="t">90 دقيقة</span></div>
+      <div class="plan-row"><span class="s">جلسة 3</span><div><b>الملاعب.</b> الدرس 6، ومخطط الأعمدة، وتمرين ملعب الفئة II مع التوجيه.</div><span class="t">90 دقيقة</span></div>
+      <div class="plan-row"><span class="s">جلسة 4</span><div><b>الطرق والبنية التحتية.</b> الدرس 7، ومصمم المقطع، وتمرين طريق M3 مع الأرصفة P3.</div><span class="t">90 دقيقة</span></div>
+      <div class="plan-row"><span class="s">جلسة 5</span><div><b>التحقق والتسليم والتقييم.</b> الدروس 8–11، وقائمة التحقق على تمرين سابق، ثم الاختبار.</div><span class="t">60–90 دقيقة</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 -->
+<section class="slide" data-label="المشاركة والأسئلة">
+  <div class="stack">
+    <div>
+      <div class="eyebrow"><i style="background:var(--fc4)"></i>المشاركة والأسئلة الشائعة</div>
+      <h2>شاركه وابدأ</h2>
+    </div>
+    <div class="share">
+      <div class="panel"><h3>رابط الموقع</h3><p style="color:var(--muted)">يفتح من الجوال والكمبيوتر بدون تثبيت.</p>
+        <div class="link-box"><code id="siteUrl">https://abdullahh15.github.io/dialux-academy/</code><button class="btn" type="button" data-copy="siteUrl">نسخ</button></div></div>
+      <div class="panel"><h3>النسخة الاحترافية</h3><p style="color:var(--muted)">المسارات الكاملة، والحاسبات، والمدقق، ومستكشف الأدوات، ومعالج بداية المشروع.</p>
+        <div class="link-box"><a class="btn primary" href="pricing.html">اعرض الأسعار والخطط</a></div></div>
+    </div>
+    <div>
+      <details><summary>هل يحتاج الموقع إنترنت؟</summary><div class="a">نعم، الموقع يعمل من المتصفح على الجوال والكمبيوتر ويحتاج اتصالاً بالإنترنت.</div></details>
+      <details><summary>هل يحفظ تقدمي؟</summary><div class="a">نعم، في متصفحك على نفس الجهاز: الدروس المنجزة وقائمة التحقق وإجابات الاختبار. إذا مسحت بيانات المتصفح أو فتحته من جهاز آخر يبدأ من جديد.</div></details>
+      <details><summary>هل أعتمد الأرقام في تقرير رسمي؟</summary><div class="a">لا تعتمدها مباشرة. استخدمها للتقدير والفهم والمراجعة، والأرقام الرسمية من حساب DIALux ومن النسخة المعتمدة من المعيار في مشروعك.</div></details>
+      <details><summary>ما الفرق بين المجاني والاحترافي؟</summary><div class="a">المجاني يشمل الأساسيات والواجهة وسير العمل وجداول المعايير والاختصارات. الاحترافي يضيف خطوات المسارات الكاملة والحاسبات والمدقق وقائمة التحقق ومستكشف الأدوات ومعالج بداية المشروع. <a href="pricing.html">قارن الخطط</a>.</div></details>
+      <details><summary>هل الموقع تابع لشركة DIAL؟</summary><div class="a">لا. هو دليل تعليمي مستقل لبرنامج DIALux evo 14.</div></details>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="wrap">دليل أكاديمية الإنارة الهندسية · DIALux علامة تجارية لشركة DIAL GmbH، وهذا الدليل مستقل وغير تابع لها</footer>
+
+<div class="present-bar" id="presentBar">
+  <span class="prog" id="presentProg"></span>
+  <button class="btn" id="pPrev" type="button">→ السابق</button>
+  <span class="count" id="pCount">1 / 10</span>
+  <button class="btn primary" id="pNext" type="button">التالي ←</button>
+  <button class="btn" id="pExit" type="button">إنهاء العرض</button>
+</div>
+</div>
+
+<script>
+(function () {
+  document.documentElement.lang = "ar";
+  document.documentElement.dir = "rtl";
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+
+  /* ---- الأدوار ---- */
+  const roles = [
+    { k: "new", name: "مهندس كهرباء جديد", goal: "تتعلم البرنامج من الصفر وتصل لتصميم صحيح في أسابيع.",
+      path: ["ابدأ هنا", "الأساسيات", "الواجهة", "سير العمل", "مسار مشروعك", "التحقق", "الاختبار"],
+      out: "تصميم أول مشروع بثقة، ودرجة اختبار تثبت الفهم.",
+      tip: "نفّذ التمارين الثلاثة (مكتب، ملعب، طريق) في DIALux، وأدخل نتائجك في المدقق بعد كل تمرين." },
+    { k: "designer", name: "مصمم إنارة", goal: "تسرّع العمل اليومي وتقلّل الرجوع للمعايير.",
+      path: ["جداول المعايير", "الحاسبات", "التشخيص", "قائمة التحقق"],
+      out: "تقديرات سريعة قبل التصميم، وتسليمات بأخطاء أقل.",
+      tip: "افتح الحاسبة قبل DIALux: إذا ابتعدت نتيجة البرنامج كثيراً عن التقدير فهناك مدخل خاطئ (MF أو المقياس أو الانعكاسات)." },
+    { k: "reviewer", name: "مراجع / استشاري", goal: "تراجع تقارير الإنارة بسرعة ومنهجية.",
+      path: ["المدقق", "قائمة التحقق", "التشخيص", "التوثيق"],
+      out: "ملاحظات مراجعة مبنية على بنود واضحة يفهمها المصمم.",
+      tip: "استخدم بنود قائمة التحقق الثمانية عشر كنموذج ملاحظات موحد، وأحِل المصمم لقسم التشخيص عند كل ملاحظة." },
+    { k: "manager", name: "مدير قسم / مشاريع", goal: "تؤهل الفريق وتوحد أسلوب العمل.",
+      path: ["سير العمل", "خطة التدريب", "الاختبار", "التوثيق"],
+      out: "فريق يعمل بنفس المنهجية، وتقارير بنفس الهيكل.",
+      tip: "اعتمد المراحل العشر كإجراء عمل داخلي، واجعل الاختبار شرطاً قبل تسليم أول مشروع للموظف الجديد." },
+    { k: "student", name: "طالب هندسة", goal: "تفهم أساسيات الإنارة وتستعد لسوق العمل.",
+      path: ["الأساسيات", "القاموس", "المسارات الثلاثة", "الاختبار"],
+      out: "لغة هندسية صحيحة ومشاريع تدريبية تعرضها في سيرتك الذاتية.",
+      tip: "وثّق التمارين الثلاثة بتقارير DIALux كاملة واجعلها ملف أعمال (Portfolio)." }
+  ];
+  $("#roleTabs").innerHTML = roles.map((r, i) => `<button class="tab" role="tab" type="button" data-i="${i}" aria-selected="${i === 0}">${r.name}</button>`).join("");
+  function showRole(i) {
+    const r = roles[i];
+    $$("#roleTabs .tab").forEach((t, j) => t.setAttribute("aria-selected", j === i));
+    $("#rolePanel").innerHTML = `<div class="role-grid">
+      <div><div class="k">الهدف</div><p>${r.goal}</p>
+        <div class="k" style="margin-top:12px">المسار داخل الموقع</div><div class="path">${r.path.map(p => `<span>${p}</span>`).join("")}</div></div>
+      <div><div class="k">ما تخرج به</div><p>${r.out}</p>
+        <div class="k" style="margin-top:12px">نصيحة عملية</div><p style="color:var(--muted)">${r.tip}</p></div></div>`;
+  }
+  $$("#roleTabs .tab").forEach(t => t.addEventListener("click", () => showRole(+t.dataset.i)));
+  showRole(0);
+
+  /* ---- الدروس ---- */
+  const lessons = [
+    { g: "البداية", t: "ابدأ هنا", do: "تختار مسارك (مباني، ملاعب، طرق) وتعرف طريقة الدليل: اقرأ، جرّب، طبّق، تحقّق.", out: "خريطة واضحة لما ستتعلمه، وتنبيه بأن القيم مرجعية.", work: "تبدأ مباشرة من المسار الذي يخص مشروعك الحالي." },
+    { g: "البداية", t: "أساسيات الإضاءة", do: "تقرأ الكميات الست (lm، lx، cd/m²، Uo، الوهج، MF) وتحرّك المختبر التفاعلي.", out: "فهم عملي لكيف تتغير الإضاءة مع الارتفاع والمسافة وزاوية السقوط.", work: "تقرأ أي تقرير إنارة وتناقش الاستشاري بلغته." },
+    { g: "البداية", t: "واجهة البرنامج", do: "تضغط على أوضاع DIALux السبعة لتعرف أدوات كل وضع، وتختار نوع مشروعك لتعرف خيار البداية المناسب.", out: "تعرف أين كل أداة، وأي خيار تبدأ به: Room planning أو Import plan أو Street Lighting…", work: "لا تضيع وقتاً في البحث داخل البرنامج." },
+    { g: "المنهجية", t: "سير العمل", do: "تتنقل بين عشر مراحل، من جمع المعطيات إلى التسليم، ولكل مرحلة خطأ شائع.", out: "منهجية ثابتة تطبقها في كل مشروع.", work: "نفس الخطوات في كل مشروع، فتقل الأخطاء ويصبح العمل قابلاً للمراجعة." },
+    { g: "المسارات", t: "المباني", do: "تبحث في جدول EN 12464-1، وتستخدم حاسبة اللومن، وتتبع خطوات غرفة واحدة ثم مبنى كامل من DWG، وإنارة الطوارئ.", out: "متطلبات كل فراغ، وعدد كشافات تقديري، وشبكة مقترحة، و W/m².", work: "تقدير سريع للعروض الفنية وجدول الكميات، والتأكد من منطقية نتيجة DIALux." },
+    { g: "المسارات", t: "الملاعب", do: "تختار الرياضة والفئة من جداول EN 12193، وتجرب ترتيبات الأعمدة في المخطط التفاعلي.", out: "الفئة ومتطلباتها، وعدد الأعمدة وارتفاعها الأدنى، وتنبيه منطقة خط المرمى.", work: "تحدد الأعمدة وارتفاعها مبكراً لتنسيق قواعدها مع الفريق الإنشائي والمدني." },
+    { g: "المسارات", t: "البنية التحتية والطرق", do: "تقارن فئات M و C و P والمواقف المكشوفة، وتجرب مصمم المقطع.", out: "الترتيب المقترح، وتقييم S/H، وعدد الأعمدة لكل كيلومتر.", work: "تقدير كميات أعمدة الطرق للمناقصات، وبداية منطقية لأداة التحسين في DIALux." },
+    { g: "الاختبار والتسليم", t: "الاختبار والتحقق", do: "تدخل نتائج DIALux في المدقق، وتراجع تشخيص المشاكل التسع، وتكمل قائمة التحقق.", out: "حكم ناجح أو غير محقق لكل متطلب، وتنبيه الإضاءة الزائدة، وقائمة من 18 بنداً.", work: "مراجعة ذاتية قبل الإرسال تقلل ملاحظات الاستشاري ودورات التعديل." },
+    { g: "الاختبار والتسليم", t: "التوثيق والتسليم", do: "تقرأ محتوى التقرير المطلوب وخيارات التصدير.", out: "هيكل تقرير احترافي، وملفات DWG للمخطط الكهربائي، وخيارات IFC و Revit.", work: "تقرير يفهمه المراجع من أول قراءة، وربط مباشر مع فريق الكهرباء." },
+    { g: "الاختبار والتسليم", t: "اختبر نفسك", do: "تجيب عن 14 سؤالاً، ولكل إجابة شرح.", out: "درجة تقيس فهمك، ومراجعة لنقاط الضعف.", work: "تقييم المتدربين الجدد قبل تكليفهم بمشروع." },
+    { g: "مرجع", t: "قاموس المصطلحات", do: "تبحث في 22 مصطلحاً بالعربي والإنجليزي مع الوحدات.", out: "مرجع سريع للمصطلحات.", work: "توحيد المصطلحات بين أفراد الفريق وفي التقارير." }
+  ];
+  let lastG = "";
+  $("#lessonList").innerHTML = lessons.map((l, i) => {
+    let h = "";
+    if (l.g !== lastG) { h += `<div class="grp">${l.g}</div>`; lastG = l.g; }
+    return h + `<button role="tab" type="button" data-i="${i}" aria-selected="${i === 0}"><span class="n">${String(i + 1).padStart(2, "0")}</span>${l.t}</button>`;
+  }).join("");
+  function showLesson(i) {
+    const l = lessons[i];
+    $$("#lessonList button").forEach(b => b.setAttribute("aria-selected", +b.dataset.i === i));
+    $("#lessonPanel").innerHTML = `<h3>${String(i + 1).padStart(2, "0")} · ${l.t}</h3>
+      <div class="io-row"><span class="tag do">ماذا تفعل</span><p>${l.do}</p></div>
+      <div class="io-row"><span class="tag out">المخرج</span><p>${l.out}</p></div>
+      <div class="io-row"><span class="tag work">في العمل</span><p>${l.work}</p></div>`;
+  }
+  $$("#lessonList button").forEach(b => b.addEventListener("click", () => showLesson(+b.dataset.i)));
+  showLesson(0);
+
+  /* ---- السيناريو ---- */
+  const fc = ["--fc1", "--fc2", "--fc3", "--fc4", "--fc5", "--fc6"];
+  const scenes = [
+    { t: "التسعير والعرض الفني", tools: ["حاسبة اللومن لفصل نموذجي", "مخطط أعمدة الملعب", "مصمم مقطع الطريق الداخلي"],
+      out: ["عدد كشافات تقديري لكل فصل و W/m²", "عدد أعمدة الملعب وارتفاعها", "عدد أعمدة الطريق والمواقف"],
+      val: "كميات أولية لجدول الكميات قبل التصميم التفصيلي، فيُبنى السعر على أرقام وليس تخميناً." },
+    { t: "تحديد المتطلبات", tools: ["جدول EN 12464-1 للفصول والممرات ودورات المياه", "جداول EN 12193: ملعب تدريب فئة III", "جدول EN 12464-2 للمواقف المكشوفة"],
+      out: ["فصل: 500 lx، UGR ≤ 19، Uo ≥ 0.60", "ملعب فئة III: 75 lx، Uo ≥ 0.5", "مواقف حركة متوسطة: 10 lx، Uo ≥ 0.25"],
+      val: "جدول متطلبات يعتمده الاستشاري قبل بدء التصميم، فلا يُعاد العمل بسبب معيار مختلف." },
+    { t: "التصميم في DIALux", tools: ["سير العمل بمراحله العشر", "خطوات مسار المباني والملاعب والطرق", "واجهة البرنامج لمعرفة كل أداة"],
+      out: ["ملف مشروع .evo منظم", "كشافات حقيقية من المورّد المعتمد", "أسطح حساب مرتبطة بالمتطلبات"],
+      val: "تصميم منظم يسهل على أي زميل فتحه ومراجعته." },
+    { t: "التحقق الذاتي", tools: ["مدقق النتائج لكل فراغ وللملعب", "مقارنة النتيجة بتقدير الحاسبة", "قائمة التحقق من 18 بنداً"],
+      out: ["حكم لكل متطلب", "تنبيه عند الإضاءة الزائدة", "قائمة تحقق مكتملة"],
+      val: "تُكتشف الأخطاء قبل الإرسال وليس في ملاحظات الاستشاري." },
+    { t: "التسليم", tools: ["درس التوثيق: محتوى التقرير", "التصدير DWG و PDF"],
+      out: ["تقرير بالمعيار و MF وقائمة الكشافات والنتائج", "مخطط كشافات DWG للفريق الكهربائي"],
+      val: "تقرير يُعتمد من أول مرة، ومخطط يبني عليه فريق الكهرباء الدوائر مباشرة." },
+    { t: "ملاحظات الاستشاري", tools: ["قسم تشخيص المشاكل", "المدقق بعد التعديل"],
+      out: ["سبب كل ملاحظة وحلها (مثلاً: Uo ضعيف في الملعب يعني إعادة توزيع نقاط التوجيه)", "إثبات التحقق بعد التعديل"],
+      val: "رد سريع ومبرَّر على الملاحظات، فتقل دورات المراجعة." }
+  ];
+  $("#sceneTabs").innerHTML = scenes.map((s, i) => `<button role="tab" type="button" data-i="${i}" aria-selected="${i === 0}"><i style="background:var(${fc[i]})"></i><span class="data" style="font-size:.75rem;color:var(--muted)">${i + 1}/6</span>${s.t}</button>`).join("");
+  let scene = 0;
+  function showScene(i) {
+    scene = Math.max(0, Math.min(scenes.length - 1, i));
+    const s = scenes[scene];
+    $$("#sceneTabs button").forEach((b, j) => b.setAttribute("aria-selected", j === scene));
+    $("#sceneTitle").textContent = `المرحلة ${scene + 1}: ${s.t}`;
+    $("#sceneBody").innerHTML = `
+      <div><div class="k">ما تستخدمه من الموقع</div><ul>${s.tools.map(x => `<li>${x}</li>`).join("")}</ul></div>
+      <div><div class="k">المخرج</div><ul>${s.out.map(x => `<li>${x}</li>`).join("")}</ul></div>
+      <div><div class="k">الفائدة</div><p style="margin-top:6px">${s.val}</p></div>`;
+    $("#scenePrev").disabled = scene === 0;
+    $("#sceneNext").disabled = scene === scenes.length - 1;
+  }
+  $$("#sceneTabs button").forEach(b => b.addEventListener("click", () => showScene(+b.dataset.i)));
+  $("#scenePrev").addEventListener("click", () => showScene(scene - 1));
+  $("#sceneNext").addEventListener("click", () => showScene(scene + 1));
+  showScene(0);
+
+  /* ---- النسخ ---- */
+  $$("[data-copy]").forEach(b => b.addEventListener("click", () => {
+    const el = document.getElementById(b.dataset.copy);
+    const done = () => { b.textContent = "تم النسخ"; setTimeout(() => b.textContent = "نسخ", 1600); };
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = "حدّد ثم انسخ"; };
+    try { navigator.clipboard.writeText(el.textContent).then(done, fallback); } catch (e) { fallback(); }
+  }));
+
+  /* ---- مؤشر المقاطع ---- */
+  const slides = $$("section.slide");
+  slides.forEach((s, i) => s.id = "s" + (i + 1));
+  $("#fcIndex").innerHTML = slides.map((s, i) => `<a href="#s${i + 1}" title="${s.dataset.label}" aria-label="${s.dataset.label}" style="background:var(${fc[i % 6]})"></a>`).join("");
+  const dots = $$("#fcIndex a");
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { const i = slides.indexOf(e.target); dots.forEach((d, j) => d.classList.toggle("on", j === i)); }
+  }), { rootMargin: "-40% 0px -55% 0px" });
+  slides.forEach(s => io.observe(s));
+  dots[0].classList.add("on");
+
+  /* ---- وضع العرض ---- */
+  let cur = 0;
+  const body = document.body;
+  function go(i) {
+    cur = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach((s, j) => s.classList.toggle("current", j === cur));
+    $("#pCount").textContent = `${cur + 1} / ${slides.length}`;
+    $("#presentProg").style.width = ((cur + 1) / slides.length * 100) + "%";
+    $("#pPrev").disabled = cur === 0;
+    $("#pNext").disabled = cur === slides.length - 1;
+    window.scrollTo(0, 0);
+  }
+  function enter() {
+    const y = window.scrollY + 120;
+    let start = 0;
+    slides.forEach((s, i) => { if (s.offsetTop <= y) start = i; });
+    body.classList.add("present");
+    $("#presentBtn").textContent = "■ إنهاء العرض";
+    go(start);
+    try { if (document.documentElement.requestFullscreen && matchMedia("(min-width: 900px)").matches) document.documentElement.requestFullscreen().catch(() => {}); } catch (e) {}
+  }
+  function exit() {
+    const target = slides[cur];
+    body.classList.remove("present");
+    $("#presentBtn").textContent = "▶ وضع العرض";
+    try { if (document.fullscreenElement) document.exitFullscreen().catch(() => {}); } catch (e) {}
+    target.scrollIntoView();
+  }
+  $("#presentBtn").addEventListener("click", () => body.classList.contains("present") ? exit() : enter());
+  $("#pExit").addEventListener("click", exit);
+  $("#pPrev").addEventListener("click", () => go(cur - 1));
+  $("#pNext").addEventListener("click", () => go(cur + 1));
+  document.addEventListener("keydown", e => {
+    if (!body.classList.contains("present")) return;
+    if (["ArrowLeft", "PageDown", " "].includes(e.key)) { e.preventDefault(); go(cur + 1); }
+    else if (["ArrowRight", "PageUp"].includes(e.key)) { e.preventDefault(); go(cur - 1); }
+    else if (e.key === "Escape") exit();
+  });
+})();
+</script>
+</body>
+</html>
