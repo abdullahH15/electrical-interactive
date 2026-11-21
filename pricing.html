@@ -107,11 +107,15 @@
   $("#footBrand").textContent = S.brand;
   $("#deliveryText").textContent = S.delivery;
   const esc = (t) => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const wa = ((S.contact || {}).whatsapp || "").replace(/\D/g, "");
+  const waLink = (text) => `https://wa.me/${wa}${text ? "?text=" + encodeURIComponent(text) : ""}`;
   $("#plans").innerHTML = S.plans.map(p => {
     const price = p.price === 0 ? "0" : Number(p.price).toLocaleString("en-US");
+    const cls = `btn${p.featured ? "" : " ghost"}`;
     let btn;
     if (!p.enabled) btn = `<span class="btn ghost" aria-disabled="true">قريباً</span>`;
-    else if (p.buyUrl) btn = `<a class="btn${p.featured ? "" : " ghost"}" href="${esc(p.buyUrl)}"${/^https?:/.test(p.buyUrl) ? ' target="_blank" rel="noopener"' : ""}>${esc(p.cta)}</a>`;
+    else if (p.buyUrl) btn = `<a class="${cls}" href="${esc(p.buyUrl)}"${/^https?:/.test(p.buyUrl) ? ' target="_blank" rel="noopener"' : ""}>${esc(p.cta)}</a>`;
+    else if (wa && p.price > 0) btn = `<a class="${cls}" href="${esc(waLink(p.waText || ""))}" target="_blank" rel="noopener">${esc(p.cta)}</a>`;
     else btn = `<span class="btn ghost" aria-disabled="true">الشراء يفتح قريباً</span>`;
     return `<div class="plan${p.featured ? " featured" : ""}${p.enabled ? "" : " soon"}">
       ${p.badge ? `<span class="badge">${esc(p.badge)}</span>` : ""}${!p.enabled ? `<span class="badge" style="background:var(--muted)">قريباً</span>` : ""}
@@ -122,7 +126,7 @@
   }).join("");
   const c = S.contact || {};
   const parts = [];
-  if (c.whatsapp) parts.push(`<a class="btn" href="https://wa.me/${encodeURIComponent(c.whatsapp)}" target="_blank" rel="noopener">واتساب</a>`);
+  if (wa) parts.push(`<a class="btn" href="${esc(waLink("السلام عليكم، لدي استفسار عن منصة " + S.brand + "."))}" target="_blank" rel="noopener">راسلنا على واتساب</a><span>الرقم: <code class="ltr">+${wa}</code></span>`);
   if (c.email) parts.push(`<span>البريد: <code>${esc(c.email)}</code></span>`);
   if (parts.length) { $("#contactBox").innerHTML = parts.join(""); $("#contactSec").hidden = false; }
 })();
